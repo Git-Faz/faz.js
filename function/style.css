@@ -1,0 +1,23 @@
+html, body {
+    background: #fffed1;
+    font-family: Lexend Deca, sans-serif;
+    margin: 5px;
+}
+h1{
+    padding: 5px;
+    background-color: #ffdb41;
+    text-align: center;
+}
+.info{
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    line-height: 25px;
+}
+
+button{
+    align-content: center;
+    padding:8px;
+    font-size: 14px;
+}
