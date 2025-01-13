@@ -7,8 +7,27 @@ h1{
 }
 
 body{
-    display: block;
     font-family: 'Times New Roman', Times, serif;
     background-color: rgb(255, 243, 204);
     color:navy;
+}
+
+#list {
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#btnGroup{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#clearCompletedBtn {
+    margin-left: 10px;
 }
