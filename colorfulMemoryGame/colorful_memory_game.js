@@ -3,9 +3,9 @@ let cards = shuffle(colors.concat(colors));
 let selectedCards = [];
 let score = 0;
 let timeLeft = 30;
-let gameINterval;
+let gameInterval;
 
-const startbtn = document.getElementById('startBtn');
+const startBtn = document.getElementById('startBtn');
 const gameContainer = document.getElementById('game-container');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
@@ -23,7 +23,7 @@ function generateCards() {
 function shuffle(array){
     for (let i = array.length - 1; i > 0; i--){
         const j = Math.floor(Math.random()*(i+1));
-        [array[i],array[j] = array[j],array[i]];
+        [array[i],array[j]] = [array[j],array[i]];
     }
     return array;
 }
@@ -40,3 +40,52 @@ function handleCardClick(event){
         setTimeout(checkMatch,500);
     }
 }
+
+function checkMatch(){
+    const [card1, card2] = selectedCards;
+    if (card1.dataset.color === card2.dataset.color){
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        score += 2;
+        scoreElement.textContent = `Score: ${score}`;
+    } else {
+        card1.textContent = '?';
+        card2.textContent = '?';
+        card1.style.backgroundColor = '#ddd';
+        card2.style.backgroundColor = '#ddd';
+    }
+    selectedCards = [];
+}
+
+function startGame() {
+    timeLeft = 30;
+    startBtn.Disabled = true;
+    score = 0; //reset score to ZERO
+    scoreElement.textContent = `Score :${score}`;
+    startGameTimer(timeLeft);
+    cards =  shuffle(colors.concat(colors));
+    selectedCards = [];
+    gameContainer.innerHTML='';
+    generateCards();
+    gameContainer.addEventListener('click', handleCardClick);
+}
+
+function startGameTimer(timeLeft){
+    timerElement.textContent = `Time left: ${timeLeft}`;
+    gameInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = `Time left: ${timeLeft}`;
+        if (timeLeft === 0) {
+            clearInterval(gameInterval);
+            timeLeft = 30;
+            alert('Game Over!');
+            startBtn.Disabled = false;
+        }
+    }, 1000);
+}
+
+// Add event listener for start button
+startBtn.addEventListener('click', startGame);
+
+// Initialize the game board
+//generateCards();
