@@ -79,7 +79,7 @@ function startGameTimer(timeLeft){
             clearInterval(gameInterval);
             timeLeft = 30;
             alert('Game Over!');
-            startBtn.Disabled = false;
+            startBtn.disabled = false;
         }
     }, 1000);
 }
@@ -88,4 +88,4 @@ function startGameTimer(timeLeft){
 startBtn.addEventListener('click', startGame);
 
 // Initialize the game board
-//generateCards();
+generateCards();
